@@ -1,196 +1,152 @@
-// highlight.js
-function initializeHighlighter() {
-    // Dil tanımlamaları
-    const languages = {
-        html: {
-            name: 'HTML',
-            patterns: [
-                {
-                    regex: /(&lt;\/?)([a-zA-Z][a-zA-Z0-9\-]*)(?:\s|&gt;)/g,
-                    class: 'token tag'
-                },
-                {
-                    regex: /([a-zA-Z\-]+)=/g,
-                    class: 'token attr-name'
-                },
-                {
-                    regex: /"([^"]*)"|'([^']*)'/g,
-                    class: 'token attr-value'
-                },
-                {
-                    regex: /(&lt;\/?|&gt;)/g,
-                    class: 'token punctuation'
-                },
-                {
-                    regex: /(&amp;)([a-zA-Z]+;)/g,
-                    class: 'token entity'
-                },
-                {
-                    regex: /(&lt;!--[\s\S]*?--&gt;)/g,
-                    class: 'token comment'
-                }
-            ]
-        },
-        css: {
-            name: 'CSS',
-            patterns: [
-                {
-                    regex: /([a-zA-Z\-]+)(?=\s*:)/g,
-                    class: 'token property'
-                },
-                {
-                    regex: /(:)(?=\s*)/g,
-                    class: 'token punctuation'
-                },
-                {
-                    regex: /([a-zA-Z\-#\.\d]+)(?=\s*\{|;|,)/g,
-                    class: 'token selector'
-                },
-                {
-                    regex: /(#([a-fA-F0-9]{3,6})|rgb\(\d+,\s*\d+,\s*\d+\))/g,
-                    class: 'token hexcode'
-                },
-                {
-                    regex: /(\d+)(px|em|rem|%|vw|vh)/g,
-                    class: 'token number'
-                },
-                {
-                    regex: /(\/\*[\s\S]*?\*\/)/g,
-                    class: 'token comment'
-                }
-            ]
-        },
-        js: {
-            name: 'JavaScript',
-            patterns: [
-                {
-                    regex: /\b(function|const|let|var|return|if|else|for|while|switch|case|break|continue|class|export|import)\b/g,
-                    class: 'token keyword'
-                },
-                {
-                    regex: /\b(true|false|null|undefined|this)\b/g,
-                    class: 'token constant'
-                },
-                {
-                    regex: /("[^"]*"|'[^']*'|`[^`]*`)/g,
-                    class: 'token string'
-                },
-                {
-                    regex: /\b(\d+)\b/g,
-                    class: 'token number'
-                },
-                {
-                    regex: /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm,
-                    class: 'token comment'
-                },
-                {
-                    regex: /([a-zA-Z_$][a-zA-Z0-9_$]*)(?=\s*\()/g,
-                    class: 'token function'
-                }
-            ]
+/**
+ * highlite.js - Hafif ve Güvenli Kod Renklendirme Kütüphanesi
+ */
+
+const highLiteRules = {
+    html: {
+        comm: /(&lt;!--[\s\S]*?--&gt;)/g,                    // Yorumlar
+        tags: /(&lt;\/?)([\w-]+)/g,                          // Etiket isimleri: <div>, </a>
+        attn: /(\s)([\w-]+)(?==)/g,                          // Attribute isimleri: href, data-test-id
+        attv: /(=")([^"]*)(")/g,                             // Attribute değerleri (tırnak içleri)
+        angl: /(&lt;|&gt;)/g,                                // < ve >
+        enti: /(&amp;[a-zA-Z0-9#]+;)/g,                      // Entity'ler: &amp;, &lt;
+        equa: /(=)/g                                         // = işareti (isteğe bağlı ayrı renk)
+    },
+    css: {
+        comm: /(\/\*[\s\S]*?\*\/)/g,                         // Yorumlar
+        sele: /([.#]?[\w-]+)(?=\s*\{)/g,                     // Selector: .class, #id, tag
+        atRule: /(@[\w-]+)/g,                                // @media, @keyframes vb.
+        prop: /([\w-]+)(?=\s*:)/g,                           // Property isimleri
+        valu: /(:)\s*([^;{}]+)(?=[;}])/g,                     // Değerler (: den sonra)
+        func: /(\w+)\(/g,                                    // Fonksiyonlar: rgb(, calc(
+        hexc: /#([0-9a-fA-F]{3,8})\b/g,                      // Hex renkler
+        numb: /\b\d+(\.\d+)?(%|px|em|rem|vw|vh|deg|s|ms)?\b/g,
+        punc: /([{};:])/g                                    // Noktalama
+    },
+    js: {
+        comm: /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)/g,              // Yorumlar
+        str: /(".*?(?<!\\)"|'.*?(?<!\\)'|`[\s\S]*?`)/g,       // String'ler (template literal dahil)
+        keyw: /\b(break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function|if|import|in|instanceof|let|new|return|super|switch|this|throw|try|typeof|var|void|while|with|yield|async|await)\b/g,
+        func: /\b([A-Z_a-z]\w*)\s*(?=\()/g,                  // Fonksiyon çağrıları ve tanımları
+        bool: /\b(true|false|null|undefined)\b/g,
+        numb: /\b\d+(\.\d+)?([eE][+-]?\d+)?\b/g,
+        oper: /([+\-*/%=&|!<>?:]+|===|!==|&&|\|\||=>)/g,
+        punc: /([{}[\]();,])/g
+    },
+    php: {
+        php: /(&lt;\?php|\?&gt;)/g,
+        comm: /(\/\/[^\n]*|\/\*[\s\S]*?\*\/|#[^\n]*)/g,
+        vari: /(\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)/g,
+        str: /(".*?(?<!\\)"|'.*?(?<!\\)')/g,
+        keyw: /\b(array|as|break|case|class|const|continue|default|die|do|echo|else|elseif|empty|endif|endforeach|endwhile|eval|exit|extends|for|foreach|function|global|if|include|isset|list|new|print|require|return|static|switch|unset|use|var|while)\b/g,
+        func: /\b(\w+)(?=\s*\()/g,
+        numb: /\b\d+(\.\d+)?\b/g,
+        oper: /([+\-*/%.=<>!&|]+)/g,
+        punc: /([{}[\]();,])/g
+    },
+    json: {
+        prop: /("[\w-]+")\s*(?=:)/g,                         // Property isimleri
+        str: /("\s*[^"]*\s*")/g,                             // String değerler
+        numb: /(:)\s*(-?\d+(\.\d+)?([eE][+-]?\d+)?)/g,
+        bool: /(:)\s*(true|false|null)/g,
+        punc: /([{}[\],:])/g
+    },
+    python: {
+        comm: /(#.*$)/gm,
+        str: /("(""|')?.*?(?<!\\)\2"|'.*?(?<!\\)')/gs,
+        keyw: /\b(and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield|True|False|None)\b/g,
+        func: /(def|class)\s+(\w+)/g,                        // def func_name ve class ClassName
+        builtin: /\b(len|range|print|open|list|dict|set|tuple|str|int|float|bool|sum|max|min|sorted)\b/g,
+        numb: /\b\d+(\.\d+)?([eE][+-]?\d+)?\b/g,
+        oper: /([+\-*/%@=<>!&|^~]+|\/\/)/g,
+        punc: /([{}[\]();,:])/g
+    },
+    bash: {
+        sheb: /^(#!.*)/gm,
+        comm: /(#.*$)/gm,
+        vari: /(\$[a-zA-Z0-9_]+|\${[^}]+})/g,
+        str: /(".*?(?<!\\)"|'.*?')/g,
+        cmd: /\b(cd|ls|pwd|mkdir|rm|cp|mv|touch|echo|cat|grep|sed|awk|find|chmod|chown|sudo|git|npm|yarn|docker|kubectl)\b/g,
+        oper: /([&|;><]+|\|\|&&)/g,
+        punc: /([{}[\]();])/g
+    },
+    sql: {
+        comm: /(--.*$|\/\*[\s\S]*?\*\/)/gm,
+        keyw: /\b(SELECT|FROM|WHERE|INSERT|INTO|UPDATE|DELETE|CREATE|ALTER|DROP|TABLE|DATABASE|INDEX|VIEW|JOIN|INNER|LEFT|RIGHT|FULL|ON|AND|OR|NOT|AS|IS|NULL|LIKE|IN|BETWEEN|GROUP BY|ORDER BY|HAVING|LIMIT|OFFSET|UNION|ALL|DISTINCT|VALUES|SET)\b/gi,
+        func: /\b(COUNT|SUM|AVG|MAX|MIN|UPPER|LOWER|TRIM|CONCAT|SUBSTR|REPLACE|NOW|CURDATE|DATE_FORMAT)\b/gi,
+        str: /('.*?')/g,
+        numb: /\b\d+(\.\d+)?\b/g,
+        oper: /([=<>!]+|<>)/g,
+        punc: /([();,])/g
+    },
+    java: {
+        comm: /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)/g,
+        anno: /(@[A-Za-z]+(\.[A-Za-z]+)*)/g,
+        keyw: /\b(abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|synchronized|super|switch|this|throw|throws|transient|try|void|volatile|while)\b/g,
+        str: /(".*?(?<!\\)")/g,
+        numb: /\b\d+(\.\d+)?([eE][+-]?\d+)?[fFdD]?\b/g,
+        func: /\b(\w+)(?=\s*\()/g,
+        oper: /([+\-*/%=&|!<>?:]+|>>>?|<<|>>)/g,
+        punc: /([{}[\]();,])/g
+    }
+};
+/**
+ * Ana Renklendirme Motoru
+ */
+function applyHighlight(txt, lang) {
+    if (!highLiteRules[lang]) return txt;
+    
+    let html = txt;
+    const rules = highLiteRules[lang];
+    const tokenStore = {};
+    let tIdx = 0;
+
+    // 1. ADIM: Maskeleme (Önce özel kuralları boya ve gizle)
+    Object.keys(rules).forEach(key => {
+        html = html.replace(rules[key], (match) => {
+            if (match.includes('__HL_')) return match; // Zaten maskelenmişse dokunma
+            const token = `__HL_${tIdx}__`;
+            tokenStore[token] = `<span class="${lang}-${key}">${match}</span>`;
+            tIdx++;
+            return token;
+        });
+    });
+
+    // 2. ADIM: Tokenleri Geri Yükle
+    Object.keys(tokenStore).forEach(token => {
+        html = html.split(token).join(tokenStore[token]);
+    });
+
+    // 3. ADIM: Son Dokunuş (Kural dışı kalan işaretler)
+    // Etiketlerin içindeki karakterleri bozmamak için negatif lookahead kullanılır.
+    html = html.replace(/(&lt;|&gt;)(?![^<]*>)/g, `<span class="hl-angled">$1</span>`);
+    html = html.replace(/(\{|\})(?![^<]*>)/g, `<span class="hl-curly">$1</span>`);
+
+    return html;
+}
+
+/**
+ * Statik ve Dinamik Elemanları Başlatıcı
+ */
+function highLiteAll() {
+    // 1. Statik Kod Blokları (<code data-lang="html"> gibi)
+    document.querySelectorAll('code[data-lang]').forEach(el => {
+        if (!el.classList.contains('highlited')) {
+            const lang = el.getAttribute('data-lang');
+            el.innerHTML = applyHighlight(el.innerHTML, lang);
+            el.classList.add('highlited');
         }
-    };
-
-    // HTML entity'leri dönüştür
-    function decodeHtmlEntities(text) {
-        const entities = {
-            '&lt;': '<',
-            '&gt;': '>',
-            '&amp;': '&',
-            '&quot;': '"',
-            '&#39;': "'"
-        };
-        return text.replace(/&[a-z]+;|&#\d+;/g, match => entities[match] || match);
-    }
-
-    // Highlight uygula
-    function highlightCode(code, language) {
-        if (!languages[language]) return code;
-        
-        let highlighted = code;
-        const lang = languages[language];
-        
-        lang.patterns.forEach(pattern => {
-            highlighted = highlighted.replace(pattern.regex, (match, ...groups) => {
-                // Grupları filtrele
-                const fullMatch = groups[0] || match;
-                return `<span class="${pattern.class}">${match}</span>`;
-            });
-        });
-        
-        return highlighted;
-    }
-
-    // Tüm code elementlerini bul ve highlight et
-    function highlightAll() {
-        document.querySelectorAll('pre code').forEach(codeElement => {
-            // Language tespit et
-            let language = 'html';
-            const parentPre = codeElement.parentElement;
-            
-            if (parentPre.className.includes('language-')) {
-                const match = parentPre.className.match(/language-(\w+)/);
-                if (match) language = match[1];
-            } else if (codeElement.className.includes('language-')) {
-                const match = codeElement.className.match(/language-(\w+)/);
-                if (match) language = match[1];
-            } else {
-                // İçeriğe göre otomatik tespit
-                const content = codeElement.textContent;
-                if (content.includes('function') || content.includes('const') || content.includes('let')) {
-                    language = 'js';
-                } else if (content.includes('{') && content.includes(':') && content.includes('}')) {
-                    language = 'css';
-                }
-            }
-            
-            // HTML entity'leri decode et
-            let content = codeElement.innerHTML;
-            content = decodeHtmlEntities(content);
-            
-            // Highlight uygula
-            const highlighted = highlightCode(content, language);
-            
-            // Orjinal content'i sakla
-            codeElement.setAttribute('data-original', content);
-            
-            // Highlight edilmiş içeriği ekle
-            codeElement.innerHTML = highlighted;
-            
-            // Language class'ını ekle
-            codeElement.classList.add('language-' + language);
-        });
-    }
-
-    // Sayfa yüklendiğinde highlight et
-    document.addEventListener('DOMContentLoaded', highlightAll);
-    
-    // Dinamik olarak eklenen kodlar için MutationObserver
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length) {
-                mutation.addedNodes.forEach((node) => {
-                    if (node.nodeType === 1 && (node.tagName === 'CODE' || node.querySelector('code'))) {
-                        setTimeout(highlightAll, 10);
-                    }
-                });
-            }
-        });
-    });
-    
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
     });
 
-    return {
-        highlightAll,
-        highlightCode,
-        languages
-    };
+    // 2. Senin gönderdiğin ContentEditable yapısı için (opsiyonel)
+    document.querySelectorAll('.highLite_editable').forEach(el => {
+        const lang = el.dataset.lang || 'html';
+        const overlay = el.previousElementSibling;
+        if (overlay) {
+            overlay.innerHTML = applyHighlight(el.innerHTML, lang);
+        }
+    });
 }
 
-// Global kullanım için
-if (typeof window !== 'undefined') {
-    window.highlightJS = initializeHighlighter();
-}
+// Sayfa yüklendiğinde çalıştır
+document.addEventListener("DOMContentLoaded", highLiteAll);
