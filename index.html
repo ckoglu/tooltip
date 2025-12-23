@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f7e2.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f7e2.svg" type="image/x-icon">
+    <title>Tooltip JS - GitHub</title>
+    <meta name="description" content="minimmal tooltip js kütüphanesi">
+    <meta name="keywords" content="tooltip, js, github, minimal">
+    <meta name="author" content="ckoglu">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <!-- Ana Başlık -->
+        <header class="main-title">
+            <h1>Tooltip JS</h1>
+            <p>Minimal tooltip kütüphanesi</p>
+        </header>
+        
+        <!-- URL Input -->
+        <section class="code-section">
+            <div class="url-container">
+                <h3 class="section-title">JS Dosyası URL'si</h3>
+                <div class="input-wrapper">
+                    <input type="text" class="url-input" id="jsUrlInput" value="https://raw.githubusercontent.com/ckoglu/tooltip/refs/heads/main/tooltip.js" readonly onclick="this.select()">
+                    <data id="copyUrlIcon" onclick="copyUrl()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tooltip Demo Bölümü -->
+        <section class="center-section">
+            <div class="tooltip-demo-area">
+                <a class="tooltip-example tooltip-top" onclick="copyCodeUst()" data-ust-title="üst tooltip örneği"><span class="tooltip-text">data-ust-title</span></a>
+                <a class="tooltip-example tooltip-right" onclick="copyCodeSag()" data-sag-title="sağ tooltip örneği"><span class="tooltip-text">data-sag-title</span></a>
+                <a class="tooltip-example tooltip-bottom" onclick="copyCodeAlt()" data-alt-title="alt tooltip örneği"><span class="tooltip-text">data-alt-title</span></a>
+                <a class="tooltip-example tooltip-left" onclick="copyCodeSol()" data-sol-title="sol tooltip örneği"><span class="tooltip-text">data-sol-title</span></a>
+            </div>
+        </section>
+        
+        <!-- Kod Gösterimi -->
+        <section class="code-section">
+            <div class="code-container">
+                <div class="code-header"><span>data-alt-title</span></div>
+                <pre id="htmlCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeAlt()">
+                    <code>&lt;a data-alt-title=&quot;alt tooltip örneği&quot;&gt;alt&lt;/a&gt;</code><data id="copyUrlIcon" onclick="copyCodeAlt()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
+                </pre>
+
+                <div class="code-header"><span>data-ust-title</span></div>
+                <pre id="htmlCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeUst()">
+                    <code>&lt;a data-ust-title=&quot;üst tooltip örneği&quot;&gt;üst&lt;/a&gt;</code><data id="copyUrlIcon" onclick="copyCodeUst()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
+                </pre>
+
+                <div class="code-header"><span>data-sag-title</span></div>
+                <pre id="htmlCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeSag()">
+                    <code>&lt;a data-sag-title=&quot;sağ tooltip örneği&quot;&gt;sağ&lt;/a&gt;</code><data id="copyUrlIcon" onclick="copyCodeSag()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
+                </pre>
+
+                <div class="code-header"><span>data-sol-title</span></div>
+                <pre id="htmlCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeSol()">
+                    <code>&lt;a data-sol-title=&quot;sol tooltip örneği&quot;&gt;sol&lt;/a&gt;</code><data id="copyUrlIcon" onclick="copyCodeSol()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
+                </pre>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer><p>Tooltip JS © 2025 - GitHub</p></footer>
+    </div>
+    <script src="tooltip.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
