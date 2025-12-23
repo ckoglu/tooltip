@@ -51,10 +51,21 @@ body{font-family:var(--font-family);font-size:var(--font-size);color:var(--prima
 .code-header span{font-size:13px;color:var(--secondary-clr);font-weight:500}
 pre{background:var(--bg-primary);border:1px solid var(--border-clr);border-radius:var(--border-radius-sm);padding:10px;overflow-x:auto;margin:0;margin-bottom:20px;font-family:SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:13px;line-height:1.5;position:relative}
 code{color:#24292e;font-family:inherit;letter-spacing: -0.4px;}
-.token.tag{color:#22863a}
-.token.attr-name{color:#6f42c1}
-.token.attr-value{color:#032f62}
-.token.punctuation{color:#24292e}
+/* SYNTAX HIGHLIGHTING */
+.token.tag { color: #22863a; }
+.token.attr-name { color: #6f42c1; }
+.token.attr-value { color: #032f62; }
+.token.punctuation { color: #24292e; }
+.token.comment { color: #6a737d; font-style: italic; }
+.token.keyword { color: #d73a49; }
+.token.string { color: #032f62; }
+.token.function { color: #6f42c1; }
+.token.number { color: #005cc5; }
+.token.constant { color: #005cc5; }
+.token.property { color: #005cc5; }
+.token.selector { color: #22863a; }
+.token.hexcode { color: #005cc5; }
+.token.entity { color: #6f42c1; }
 data{--scale:1;width:calc(var(--scale) * 40px);height:calc(var(--scale) * 40px);border:1px solid transparent;text-align:center;cursor:pointer;border-radius:calc(var(--scale) * 10px);display:flex;align-items:center;justify-content:center;position:absolute;right:8px;top:50%;transform:translateY(-50%);transition:all var(--transition-speed);background:0 0}
 data[size="0.5"]{--scale:0.5}
 data[size="0.6"]{--scale:0.6}
