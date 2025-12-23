@@ -31,6 +31,10 @@
                     <input type="text" class="url-input" id="jsUrlInput" value="https://raw.githubusercontent.com/ckoglu/tooltip/refs/heads/main/tooltip.js" readonly onclick="this.select()">
                     <data id="copyUrlIcon" onclick="copyUrl()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
                 </div>
+                <div class="code-header"><span>script</span></div>
+                <pre id="jsCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeAlt()">
+                    <code data-lang="js">&lt;script src=&quot;https://raw.githubusercontent.com/ckoglu/tooltip/refs/heads/main/tooltip.js&quot;&gt;&lt;/script&gt;</code><data id="copyUrlIcon" onclick="copyCodeJs()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
+                </pre>
             </div>
         </section>
         
@@ -48,22 +52,22 @@
         <section class="code-section">
             <div class="code-container">
                 <div class="code-header"><span>data-alt-title</span></div>
-                <pre id="htmlCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeAlt()">
+                <pre id="htmlCodeAlt" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeAlt()">
                     <code data-lang="html">&lt;a data-alt-title=&quot;alt tooltip örneği&quot;&gt;alt&lt;/a&gt;</code><data id="copyUrlIcon" onclick="copyCodeAlt()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
                 </pre>
 
                 <div class="code-header"><span>data-ust-title</span></div>
-                <pre id="htmlCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeUst()">
+                <pre id="htmlCodeUst" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeUst()">
                     <code data-lang="html">&lt;a data-ust-title=&quot;üst tooltip örneği&quot;&gt;üst&lt;/a&gt;</code><data id="copyUrlIcon" onclick="copyCodeUst()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
                 </pre>
 
                 <div class="code-header"><span>data-sag-title</span></div>
-                <pre id="htmlCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeSag()">
+                <pre id="htmlCodeSag" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeSag()">
                     <code data-lang="html">&lt;a data-sag-title=&quot;sağ tooltip örneği&quot;&gt;sağ&lt;/a&gt;</code><data id="copyUrlIcon" onclick="copyCodeSag()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
                 </pre>
 
                 <div class="code-header"><span>data-sol-title</span></div>
-                <pre id="htmlCode" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeSol()">
+                <pre id="htmlCodeSol" class="input-wrapper" onclick="selectAllCode(this)" ondblclick="copyCodeSol()">
                     <code data-lang="html">&lt;a data-sol-title=&quot;sol tooltip örneği&quot;&gt;sol&lt;/a&gt;</code><data id="copyUrlIcon" onclick="copyCodeSol()" size="0.8" data-ust-title="kopyala"><i icon="copy"></i></data>
                 </pre>
             </div>
