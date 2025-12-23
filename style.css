@@ -39,7 +39,7 @@ body{font-family:var(--font-family);font-size:var(--font-size);color:var(--prima
 .tooltip-bottom{bottom:20px;}
 .tooltip-left{right: calc(50% + 80px);}
 .tooltip-text{color:var(--primary-clr);font-weight:500}
-.code-section{background:var(--bg-secondary);max-width:var(--maxw);margin: auto;border:1px solid var(--border-clr);border-radius:var(--border-radius-lg);padding:15px;margin-bottom:30px;box-shadow:var(--shadow-md)}
+.code-section{background:var(--bg-secondary);max-width:var(--maxw);margin: auto;border:1px solid var(--border-clr);border-radius:var(--border-radius-lg);padding:25px;margin-bottom:30px;box-shadow:var(--shadow-md)}
 .section-title{font-size:17px;font-weight:600;color:var(--primary-clr);margin-bottom:5px;display:flex;align-items:center;gap:10px}
 .section-title i{color:var(--focus-clr)}
 .url-container{margin-bottom:30px}
