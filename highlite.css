@@ -1,0 +1,86 @@
+code {color: #444746;}
+/* =========================== HTML =========================== */
+.html-comm { color: gray; font-style: italic; }                  /* <!-- yorum --> */
+.html-tags { color: #d93025; }                    /* <div>, <a>, </p> */
+.html-attn { color: #b55908; }                                    /* href, class, data-test-id, aria-label */
+.html-attv { color: #188038; }                                /* "değer" kısmı (attv içinde match'in 2. grubu) */
+.html-angl { color: #8430ce;}                   /* &lt; ve &gt; */
+.html-enti { color: #8430ce; }                                      /* &amp;, &nbsp; */
+.html-equa { color: #8430ce; }                                      /* = işareti (isteğe bağlı) */
+
+/* =========================== CSS =========================== */
+.css-comm { color: gray; font-style: italic; }
+.css-sele { color: #00008b; font-weight: bold; }                  /* .class, #id, div */
+.css-atRule { color: #8b008b; }                                  /* @media, @keyframes */
+.css-prop { color: orange; }                                     /* margin, padding, background */
+.css-valu span { color: green; }                                 /* 10px, #fff, rgba(...) */
+.css-func { color: burlywood; }                                  /* rgb(, calc(, linear-gradient( */
+.css-hexc { color: #d14; }                                       /* #ff0000 */
+.css-numb { color: #098658; }                                    /* 12, 1.5em */
+.css-punc { color: #555; }                                       /* { } ; : */
+
+/* =========================== JavaScript =========================== */
+.js-comm { color: gray; font-style: italic; }
+.js-keyw { color: purple; font-weight: bold; }                   /* const, let, function, if, return... */
+.js-func { color: burlywood; }                                   /* console.log, alert, Math.random */
+.js-str { color: greenyellow; background: rgba(0,0,0,0.05); }     /* "string", 'text', `template` */
+.js-numb { color: #098658; }
+.js-bool { color: purple; }
+.js-oper { color: #555; }
+.js-punc { color: #555; }
+
+/* =========================== PHP =========================== */
+.php-php { color: red; font-weight: bold; }                      /* <?php ve ?> */
+.php-comm { color: gray; font-style: italic; }
+.php-vari { color: #00008b; }                                    /* $degisken */
+.php-keyw { color: purple; font-weight: bold; }
+.php-func { color: burlywood; }
+.php-str { color: greenyellow; }
+.php-numb { color: #098658; }
+
+/* =========================== JSON =========================== */
+.json-prop { color: orange; }                                    /* "key" : */
+.json-str { color: green; }
+.json-numb { color: #098658; }
+.json-bool span { color: purple; }
+.json-punc { color: #555; }
+
+/* =========================== Python =========================== */
+.python-comm { color: gray; font-style: italic; }
+.python-keyw { color: purple; font-weight: bold; }                /* def, class, if, for... */
+.python-func span:nth-child(2) { color: burlywood; }             /* fonksiyon isimleri (def my_func) */
+.python-builtin { color: burlywood; }                            /* print, len, range */
+.python-str { color: greenyellow; }
+.python-numb { color: #098658; }
+.python-oper { color: #555; }
+.python-punc { color: #555; }
+
+/* =========================== Bash =========================== */
+.bash-sheb { color: #8b008b; }                                   /* #!/bin/bash */
+.bash-comm { color: gray; font-style: italic; }
+.bash-cmd { color: burlywood; font-weight: bold; }               /* ls, cd, git, echo */
+.bash-vari { color: #00008b; }
+.bash-str { color: greenyellow; }
+.bash-oper { color: #555; }
+
+/* =========================== SQL =========================== */
+.sql-comm { color: gray; font-style: italic; }
+.sql-keyw { color: purple; font-weight: bold; }                  /* SELECT, FROM, WHERE... */
+.sql-func { color: burlywood; }                                  /* COUNT, SUM, UPPER */
+.sql-str { color: greenyellow; }
+.sql-numb { color: #098658; }
+.sql-oper { color: #555; }
+
+/* =========================== Java =========================== */
+.java-comm { color: gray; font-style: italic; }
+.java-anno { color: #8b008b; }                                    /* @Override */
+.java-keyw { color: purple; font-weight: bold; }
+.java-str { color: greenyellow; }
+.java-numb { color: #098658; }
+.java-func { color: burlywood; }
+.java-oper { color: #555; }
+.java-punc { color: #555; }
+
+/* Ekstra: Genel curly ve angled (kod içinde kalanlar) */
+.hl-angled { color: #666; }
+.hl-curly { color: #555; }
