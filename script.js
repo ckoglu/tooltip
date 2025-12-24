@@ -115,8 +115,7 @@ function copyCodeSol() {
 
 // Event listener'lar
 document.addEventListener('DOMContentLoaded', function() {
-    initializeTooltip();
-    
+
     // URL input event listener'ları
     const urlInput = document.getElementById('jsUrlInput');
     if (urlInput) {
