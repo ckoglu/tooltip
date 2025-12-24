@@ -99,3 +99,5 @@ function initializeTooltip() {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {initializeTooltip();});
