@@ -79,21 +79,20 @@
 
                 <div class="code-header"><span>css</span></div>
                 <pre id="cssv2Code" class="input-wrapper" onclick="selectAllCode(this)">
-                    <code data-lang="css">
-[data-tooltip]{position:relative;cursor:pointer}
+                    <code data-lang="css">[data-tooltip]{position:relative;cursor:pointer}
 [data-tooltip]::after{content:attr(data-tooltip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(10px);background:var(--tooltip-bg);color:var(--tooltip-color);padding:6px 12px;border-radius:var(--tooltip-radius);font-size:14px;font-weight:500;white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;transition:all var(--transition-speed) ease;box-shadow:0 4px 12px rgba(0,0,0,.15);margin-bottom:8px;z-index:1000}
 [data-tooltip]::before{content:'';position:absolute;bottom:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--tooltip-bg);opacity:0;visibility:hidden;transition:all var(--transition-speed) ease;margin-bottom:2px}
 [data-tooltip]:focus::after,[data-tooltip]:focus::before,[data-tooltip]:hover::after,[data-tooltip]:hover::before{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
 [data-tooltip-position=left]::after{left:0;transform:translateX(-10%) translateY(10px)}
 [data-tooltip-position=left]::before{left:20px}
 [data-tooltip-position=right]::after{left:auto;right:0;transform:translateX(10%) translateY(10px)}
-[data-tooltip-position=right]::before{left:auto;right:20px}
-                    </code>
+[data-tooltip-position=right]::before{left:auto;right:20px}</code>
                 </pre>
 
                 <div class="code-header"><span>html</span></div>
                 <pre id="htmlv2Code" class="input-wrapper" onclick="selectAllCode(this)">
-                    <code data-lang="html">&lt;span data-tooltip=&quot;tooltip metin&quot;&gt;metin&lt;/span&gt; // sadece data-tooltip yazmak yeterli</code>
+                    <code data-lang="html">// sadece data-tooltip yazmak yeterli
+&lt;span data-tooltip=&quot;tooltip metin&quot;&gt;metin&lt;/span&gt;</code>
             </div>
         </section>
         
